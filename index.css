@@ -1,0 +1,19 @@
+#c {
+    width: 270;
+    height: 462.5;
+    border: 5px white solid;
+}
+#ccontainer {
+    display: flex;
+    justify-content: center;
+}
+
+div.centered {
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    background-color: black;
+    color: white;
+}

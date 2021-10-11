@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div id="src_images" style="display: none;"></div>
+        <div id="ccontainer">
+            <canvas width=1080 height=1850 id=c></canvas>
+        </div>
+
+        <div class=centered>
+            <button id="random" onclick="randomize()">Randomize</button>
+            <br>
+            </div>
+        <div class="centered">
+            <p>Eye type</p>
+            <input type="number" id="eyetype" min=0 onchange="applySettings()">
+            <p>Eye height</p>
+            <input type="number" id="eyeheight" step=10 onchange="applySettings()">
+            <p>Eye spacing</p>
+            <input type="number" id="eyespacing" step=10 onchange="applySettings()">
+        </div>
+        <div class="centered">
+            <p>Mouth type</p>
+            <input type="number" id="mouthtype" min=0 onchange="applySettings()">
+            <p>Mouth height</p>
+            <input type="number" id="mouthheight" step=10 onchange="applySettings()">
+        </div>
+        <div class="centered">
+            <!--<button id="apply" onclick="applySettings()">Apply</button>-->
+        </div>
+
+        <!--Scripts-->
+        <script src="assets.js"></script>
+        <script src="index.js"></script>
+        <script>//draw();</script>
+    </body>
+</html>
