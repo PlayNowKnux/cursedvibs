@@ -3,6 +3,7 @@ var ctx = c.getContext("2d");
 
 var settings = {
     base: 0,
+    displayWatermark: true,
     eye: {
         num: rand_default[0],
         position: {
@@ -37,6 +38,8 @@ function resetInputs() {
     document.getElementById("mouthtype").value = settings.mouth.num;
     document.getElementById("mouthtype").max = mouths_amount - 1;
     document.getElementById("mouthheight").value = (settings.mouth.position.y - baseMouthHeight) * -1;
+
+    document.getElementById("displayWatermark").checked = settings.displayWatermark
 }
 
 resetInputs()
@@ -78,14 +81,23 @@ function draw() {
         settings.eye.position.y - (eyes[settings.eye.num].height / 2)
     )
     
-    mirrorImage(
-        ctx,
-        eyes[settings.eye.num], 
-        ((c.width / 2) + (eyes[settings.eye.num].width) + settings.eye.position.distance), 
-        settings.eye.position.y - (eyes[settings.eye.num].height / 2),
-        true,
-        false
-    )
+    if (!ignore_flip.includes(parseInt(settings.eye.num))) {
+        mirrorImage(
+            ctx,
+            eyes[settings.eye.num], 
+            ((c.width / 2) + (eyes[settings.eye.num].width) + settings.eye.position.distance), 
+            settings.eye.position.y - (eyes[settings.eye.num].height / 2),
+            true,
+            false
+        )
+    } else {
+        ctx.drawImage(
+            eyes[settings.eye.num], 
+            ((c.width / 2) + (settings.eye.position.distance)), 
+            settings.eye.position.y - (eyes[settings.eye.num].height / 2)
+        )
+        
+    }
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 
@@ -103,15 +115,33 @@ function draw() {
         ctx.stroke();
     }
     
+    if (settings.displayWatermark) {
+        ctx.fillStyle = "#FF0000"
+        ctx.font = "60px Arial"
+        ctx.fillText("playnowknux.github.io/cursedvibs", 10, 50)
+    }
 }
 
 function applySettings() {
     settings.eye.num = document.getElementById("eyetype").value;
+
+    if (settings.eye.num > eyes_amount) {
+        settings.eye.num = eyes_amount;
+    } else if (settings.eye.num < 0) {
+        settings.eye.num = 0;
+    }
     settings.eye.position.y = parseInt(document.getElementById("eyeheight").value)* -1 + baseEyeHeight ;
     settings.eye.position.distance = parseInt(document.getElementById("eyespacing").value) + baseEyeDist;
 
     settings.mouth.num = document.getElementById("mouthtype").value;
+
+    if (settings.mouth.num > mouths_amount) {
+        settings.mouth.num = mouths_amount;
+    } else if (settings.mouth.num < 0) {
+        settings.mouth.num = 0;
+    }
     settings.mouth.position.y = parseInt(document.getElementById("mouthheight").value)* -1 + baseMouthHeight;
+    settings.displayWatermark = document.getElementById("displayWatermark").checked;
     resetInputs()
     draw();
 }

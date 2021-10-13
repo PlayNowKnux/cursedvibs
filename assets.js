@@ -43,6 +43,9 @@ var eyes_amount = 5;
 var mouths_amount = 5;
 var base_amount = 1;
 
+// Indexes of eyes to ignore mirroring
+var ignore_flip = [0];
+
 var eyes = [];
 var mouths = [];
 var bases = [];

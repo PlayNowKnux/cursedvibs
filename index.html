@@ -4,6 +4,8 @@
     </head>
     <body>
         <div id="src_images" style="display: none;"></div>
+        <p style="text-align: center;">If Vibri doesn't show up or a facial feature is missing, reload the page.</p>
+        <p style="text-align: center;">I have no idea why this happens.</p>
         <div id="ccontainer">
             <canvas width=1080 height=1850 id=c></canvas>
         </div>
@@ -27,7 +29,8 @@
             <input type="number" id="mouthheight" step=10 onchange="applySettings()">
         </div>
         <div class="centered">
-            <!--<button id="apply" onclick="applySettings()">Apply</button>-->
+            <p>Display watermark</p>
+            <input type="checkbox" id="displayWatermark" onchange="applySettings()">
         </div>
 
         <!--Scripts-->
