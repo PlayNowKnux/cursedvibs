@@ -3,7 +3,7 @@ var ctx = c.getContext("2d");
 
 var settings = {
     base: 0,
-    displayWatermark: true,
+    displayWatermark: false,
     eye: {
         num: rand_default[0],
         position: {
